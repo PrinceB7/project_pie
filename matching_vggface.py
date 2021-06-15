@@ -7,6 +7,7 @@ from mtcnn.mtcnn import MTCNN
 from keras_vggface2.vggface import VGGFace
 from keras_vggface2.utils import preprocess_input
 import os
+from keras.models import load_model 
  
 
 def extract_face(filename, required_size=(224, 224)):
@@ -28,7 +29,7 @@ def get_embeddings(filenames):
     faces = [extract_face(f) for f in filenames]
     samples = asarray(faces, 'float32')
     samples = preprocess_input(samples, version=2)
-    model = VGGFace(model='resnet50', include_top=False, input_shape=(224, 224, 3), pooling='avg')
+    model = load_model('model1.h5')
     
     #print(model.summary())
 
