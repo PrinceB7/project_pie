@@ -29,7 +29,8 @@ def get_embeddings(filenames):
     faces = [extract_face(f) for f in filenames]
     samples = asarray(faces, 'float32')
     samples = preprocess_input(samples, version=2)
-    model = load_model('model1.h5')
+    #model = load_model('model1.h5')
+    model = VGGFace(model='resnet50', include_top=False, input_shape=(224, 224, 3), pooling='avg')
     
     #print(model.summary())
 
